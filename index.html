@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Muntasir Al Mamun's Web3 and Blockchain Projects Portfolio">
+    <title>MUNTASIR AL MAMUN | Web3 Projects</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00a8ff;
+            --secondary-color: #192a56;
+            --accent-color: #0abde3;
+            --ethereum-color: #627eea;
+            --dark-color: #1e272e;
+            --light-color: #f5f6fa;
+            --card-bg: rgba(15, 23, 42, 0.8);
+            --card-border: rgba(79, 209, 197, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--light-color);
+            background-color: var(--dark-color);
+            overflow-x: hidden;
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+        }
+        
+        h1, h2, h3, h4, h5, .crypto-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .navbar {
+            background-color: rgba(25, 42, 86, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 168, 255, 0.2);
+            transition: all 0.3s ease;
+            padding: 15px 0;
+            z-index: 1000;
+        }
+        
+        .navbar-brand {
+            font-weight: bold;
+            color: white !important;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+            margin-left: 15px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .nav-link:hover {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+        
+        /* Language selector */
+        .language-selector {
+            display: flex;
+            align-items: center;
+            margin-left: 15px;
+        }
+        
+        .lang-btn {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-left: 5px;
+        }
+        
+        .lang-btn.active {
+            background: var(--ethereum-color);
+            color: white;
+            box-shadow: 0 0 10px rgba(98, 126, 234, 0.5);
+        }
+        
+        .lang-btn:hover:not(.active) {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Hero section */
+        .hero {
+            background: linear-gradient(135deg, var(--secondary-color), var(--dark-color));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .ethereum-glow {
+            text-shadow: 0 0 10px rgba(98, 126, 234, 0.7), 0 0 20px rgba(98, 126, 234, 0.5);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .btn-glow {
+            background: linear-gradient(45deg, var(--ethereum-color), var(--accent-color));
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(10, 189, 227, 0.5);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent-color), var(--ethereum-color));
+            z-index: -1;
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+        }
+        
+        .btn-glow:hover::before {
+            opacity: 1;
+        }
+        
+        .btn-glow:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 25px rgba(10, 189, 227, 0.7);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--light-color);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent-color), var(--ethereum-color));
+        }
+        
+        .title-container {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        /* Project cards */
+        .project-card {
+            border-radius: 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 30px;
+            height: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 168, 255, 0.25);
+            border-color: rgba(79, 209, 197, 0.6);
+        }
+        
+        .project-card .card-img-top {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card .card-body {
+            padding: 25px;
+        }
+        
+        .project-card .card-title {
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .project-card .card-text {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            min-height: 3rem;
+        }
+        
+        .tech-stack {
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .tech-stack span {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--accent-color);
+            border-radius: 15px;
+            padding: 5px 12px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(79, 209, 197, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .tech-stack span:hover {
+            background-color: rgba(79, 209, 197, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .project-logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 4rem;
+            background-size: cover;
+            background-position: center;
+            transition: all 0.5s;
+        }
+        
+        .project-logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0.7), transparent);
+            z-index: 0;
+        }
+        
+        .project-logo i {
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+        
+        .project-card:hover .project-logo {
+            transform: scale(1.1);
+        }
+        
+        /* Blockchain visual elements */
+        .chain-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .chain-link {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            background: rgba(98, 126, 234, 0.1);
+            border: 1px solid rgba(98, 126, 234, 0.3);
+            animation: chainFloat 25s linear infinite;
+            opacity: 0.5;
+        }
+        
+        .chain-link::before {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            border-radius: 8px;
+            background: rgba(98, 126, 234, 0.3);
+            border: 1px solid rgba(98, 126, 234, 0.5);
+        }
+        
+        @keyframes chainFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+        
+        .data-stream {
+            position: absolute;
+            color: rgba(79, 209, 197, 0.3);
+            font-family: monospace;
+            font-size: 14px;
+            animation: dataStream 10s linear infinite;
+            white-space: nowrap;
+        }
+        
+        @keyframes dataStream {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            position: relative;
+            background: linear-gradient(to top, #0f0c29, #302b63);
+            color: white;
+            padding: 50px 0 30px;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+        }
+        
+        .social-links {
+            margin-top: 25px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(79, 209, 197, 0.3);
+            color: white;
+            margin: 0 10px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            background: linear-gradient(45deg, var(--ethereum-color), var(--accent-color));
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(10, 189, 227, 0.5);
+        }
+        
+        /* Add project card */
+        .add-project-card {
+            border: 2px dashed rgba(79, 209, 197, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            min-height: 380px;
+            border-radius: 16px;
+            background-color: rgba(25, 42, 86, 0.3);
+            transition: all 0.4s;
+        }
+        
+        .add-project-card:hover {
+            border-color: var(--accent-color);
+            background-color: rgba(25, 42, 86, 0.5);
+            transform: translateY(-10px);
+        }
+        
+        .add-project-card i {
+            font-size: 3rem;
+            color: rgba(79, 209, 197, 0.5);
+            margin-bottom: 20px;
+            transition: all 0.4s;
+        }
+        
+        .add-project-card:hover i {
+            color: var(--accent-color);
+            transform: rotate(180deg);
+        }
+        
+        .add-project-card p {
+            color: rgba(255, 255, 255, 0.6);
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .language-selector {
+                margin: 10px 0 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .project-card .card-text {
+                min-height: auto;
+            }
+            
+            .navbar-collapse {
+                background: rgba(25, 42, 86, 0.95);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border-radius: 10px;
+                padding: 10px;
+                margin-top: 10px;
+            }
+            
+            .language-selector {
+                justify-content: center;
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fab fa-ethereum me-2"></i>
+                MUNTASIR AL MAMUN
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">
+                            <span class="lang-en">Home</span>
+                            <span class="lang-cn d-none">首页</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">
+                            <span class="lang-en">Projects</span>
+                            <span class="lang-cn d-none">项目</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">
+                            <span class="lang-en">Contact</span>
+                            <span class="lang-cn d-none">联系</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- Language switcher integrated into navbar -->
+                <div class="language-selector">
+                    <span class="text-light me-2">
+                        <span class="lang-en">Language:</span>
+                        <span class="lang-cn d-none">语言:</span>
+                    </span>
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                    <button class="lang-btn" data-lang="cn">中文</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <!-- Blockchain background effects -->
+        <div class="chain-container" id="chain-container">
+            <!-- Chain links will be added dynamically -->
+        </div>
+        
+        <div class="container hero-content text-center">
+            <h1 class="lang-en">Web3 & Smart Contract Projects</h1>
+            <h1 class="lang-cn d-none">Web3 和智能合约项目</h1>
+            
+            <p class="lang-en">Building decentralized solutions and blockchain applications for the digital future</p>
+            <p class="lang-cn d-none">为数字未来构建去中心化解决方案和区块链应用</p>
+            
+            <div class="mt-4">
+                <a href="#projects" class="btn btn-glow">
+                    <span class="lang-en">View Projects</span>
+                    <span class="lang-cn d-none">查看项目</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="py-5" id="projects">
+        <div class="container">
+            <div class="title-container">
+                <h2 class="section-title lang-en">Blockchain Projects</h2>
+                <h2 class="section-title lang-cn d-none">区块链项目</h2>
+            </div>
+            
+            <div class="row">
+                <!-- Project 1: SLMF -->
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card project-card">
+                        <div class="card-img-top">
+                            <div class="project-logo" style="background-image: url('https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=1000');"> 
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">SLMF Smart Contract</h5>
+                            <p class="card-text lang-en">Stackelberg Leader-Member Framework for decentralized applications.</p>
+                            <p class="card-text lang-cn d-none">基于先行者博弈理论的去中心化应用框架。</p>
+                            <div class="tech-stack">
+                                <span>Solidity</span>
+                                <span>Web3.js</span>
+                                <span>DApp</span>
+                            </div>
+                            <a href="https://muntasir-mamun7.github.io/SLMF1.0.1/" target="_blank" class="btn btn-glow w-100">
+                                <span class="lang-en">View Project</span>
+                                <span class="lang-cn d-none">查看项目</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2: UST -->
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card project-card">
+                        <div class="card-img-top">
+                            <div class="project-logo" style="background-image: url('https://images.unsplash.com/photo-1644143379190-08a5f055de1f?q=80&w=1000');">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">UST Smart Contract</h5>
+                            <p class="card-text lang-en">User Satisfaction Tracking system with immutable service records.</p>
+                            <p class="card-text lang-cn d-none">用户满意度跟踪系统，具有不可变服务记录。</p>
+                            <div class="tech-stack">
+                                <span>Solidity</span>
+                                <span>MetaMask</span>
+                                <span>ERC Standards</span>
+                            </div>
+                            <a href="https://muntasir-mamun7.github.io/UST1.0.2SC/" target="_blank" class="btn btn-glow w-100">
+                                <span class="lang-en">View Project</span>
+                                <span class="lang-cn d-none">查看项目</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3: MOSS -->
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card project-card">
+                        <div class="card-img-top">
+                            <div class="project-logo" style="background-image: url('https://images.unsplash.com/photo-1642790551116-bdd1a325fda6?q=80&w=1000');">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">MOSS Smart Contract</h5>
+                            <p class="card-text lang-en">Multi-Operator Spectrum Sharing framework for telecommunications.</p>
+                            <p class="card-text lang-cn d-none">多运营商频谱共享框架，用于电信资源分配。</p>
+                            <div class="tech-stack">
+                                <span>Solidity</span>
+                                <span>Truffle</span>
+                                <span>JavaScript</span>
+                            </div>
+                            <a href="https://muntasir-mamun7.github.io/MOSS.1.0.2SC/" target="_blank" class="btn btn-glow w-100">
+                                <span class="lang-en">View Project</span>
+                                <span class="lang-cn d-none">查看项目</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4: DPSG -->
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card project-card">
+                        <div class="card-img-top">
+                            <div class="project-logo" style="background-image: url('https://images.unsplash.com/photo-1642104704074-907c0698cbd9?q=80&w=1000');">
+                                <i class="fas fa-broadcast-tower"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">DPSG Smart Contract</h5>
+                            <p class="card-text lang-en">Decentralized Protocols for Spectrum Governance and allocation.</p>
+                            <p class="card-text lang-cn d-none">频谱治理的去中心化协议和分配系统。</p>
+                            <div class="tech-stack">
+                                <span>Solidity</span>
+                                <span>React</span>
+                                <span>Blockchain</span>
+                            </div>
+                            <a href="https://muntasir-mamun7.github.io/DPSG.1.0.1.SC/" target="_blank" class="btn btn-glow w-100">
+                                <span class="lang-en">View Project</span>
+                                <span class="lang-cn d-none">查看项目</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Placeholder for future projects -->
+                <div class="col-md-6 mb-4">
+                    <div class="add-project-card">
+                        <i class="fas fa-cube"></i>
+                        <p class="lang-en">More blockchain solutions coming soon</p>
+                        <p class="lang-cn d-none">更多区块链解决方案即将推出</p>
+                    </div>
+                </div>
+                
+                <!-- Another placeholder for future projects -->
+                <div class="col-md-6 mb-4">
+                    <div class="add-project-card">
+                        <i class="fas fa-code-branch"></i>
+                        <p class="lang-en">Future DeFi applications</p>
+                        <p class="lang-cn d-none">未来的去中心化金融应用</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container text-center">
+            <h2 class="lang-en">Contact</h2>
+            <h2 class="lang-cn d-none">联系方式</h2>
+            <p class="mb-4 lang-en">Interested in blockchain collaborations? Let's connect!</p>
+            <p class="mb-4 lang-cn d-none">对区块链合作感兴趣？请与我联系！</p>
+            
+            <div class="social-links">
+                <a href="https://github.com/muntasir-mamun7" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/muntasirmamun7/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://x.com/MoRN__7" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="munmamun9@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+            
+            <p class="mt-4">&copy; 2025 MUNTASIR AL MAMUN. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create blockchain visual elements
+            createBlockchainElements();
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Navbar background change on scroll
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(25, 42, 86, 0.95)';
+                    navbar.style.boxShadow = '0 5px 20px rgba(0, 168, 255, 0.3)';
+                } else {
+                    navbar.style.background = 'rgba(25, 42, 86, 0.9)';
+                    navbar.style.boxShadow = '0 2px 20px rgba(0, 168, 255, 0.2)';
+                }
+            });
+            
+            // Language switcher
+            const langButtons = document.querySelectorAll('.lang-btn');
+            langButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                    
+                    // Update active button
+                    langButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Animate elements on scroll
+            animateOnScroll();
+        });
+        
+        // Change language function
+        function changeLanguage(lang) {
+            const enElements = document.querySelectorAll('.lang-en');
+            const cnElements = document.querySelectorAll('.lang-cn');
+            
+            if (lang === 'en') {
+                enElements.forEach(el => el.classList.remove('d-none'));
+                cnElements.forEach(el => el.classList.add('d-none'));
+            } else {
+                enElements.forEach(el => el.classList.add('d-none'));
+                cnElements.forEach(el => el.classList.remove('d-none'));
+            }
+        }
+        
+        // Create blockchain visual elements
+        function createBlockchainElements() {
+            // Add data streams to hero section
+            const hero = document.querySelector('.hero');
+            
+            for (let i = 0; i < 15; i++) {
+                const dataStream = document.createElement('div');
+                dataStream.classList.add('data-stream');
+                dataStream.style.left = `${Math.random() * 100}%`;
+                dataStream.style.animationDelay = `${Math.random() * 10}s`;
+                dataStream.style.animationDuration = `${15 + Math.random() * 10}s`;
+                
+                // Generate random binary/hex data
+                let data = '';
+                for (let j = 0; j < 30; j++) {
+                    if (Math.random() > 0.5) {
+                        data += Math.random() > 0.5 ? '0' : '1';
+                    } else {
+                        data += '0123456789ABCDEF'[Math.floor(Math.random() * 16)];
+                    }
+                }
+                dataStream.textContent = data;
+                hero.appendChild(dataStream);
+            }
+            
+            // Add chain links
+            const chainContainer = document.getElementById('chain-container');
+            
+            for (let i = 0; i < 7; i++) {
+                const chainLink = document.createElement('div');
+                chainLink.classList.add('chain-link');
+                chainLink.style.left = `${10 + i * 12}%`;
+                chainLink.style.animationDelay = `${i * 1.2}s`;
+                chainContainer.appendChild(chainLink);
+            }
+        }
+        
+        // Animate elements when scrolled into view
+        function animateOnScroll() {
+            const animateElements = document.querySelectorAll('.project-card, .section-title, .add-project-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animateElements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(50px)';
+                element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(element);
+            });
+            
+            // Animate hero content
+            const heroElements = document.querySelectorAll('.hero h1, .hero p, .hero .btn-glow');
+            heroElements.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, 300 + index * 300);
+            });
+        }
+    </script>
+</body>
+</html>
